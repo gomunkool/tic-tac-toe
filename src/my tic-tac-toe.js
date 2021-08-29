@@ -6,6 +6,11 @@ class TicTacToe {
     [null, null, null],
     [null, null, null],
   ]
+  // matrix = [
+  //   ['x', 'x', 'o'],
+  //   ['o', 'o', 'x'],
+  //   ['x', 'o', 'x'],
+  // ]
 
   getCurrentPlayerSymbol() {
     return this.plaer
@@ -42,10 +47,11 @@ class TicTacToe {
       for (let y = 0; y < this.matrix[i].length; y++) {
         if (!this.matrix[i][y]) {
           return false
+        } else {
+          return true
         }
       }
     }
-    return true
   }
 
   getWinner() {
@@ -82,6 +88,13 @@ class TicTacToe {
   }
 
   isDraw() {
+    for (let i = 0; i < this.matrix.length; i++) {
+      for (let y = 0; y < this.matrix[i].length; y++) {
+        if (!this.matrix[i][y]) {
+          return false
+        }
+      }
+    }
     let win = [
       [this.matrix[0][0], this.matrix[0][1], this.matrix[0][2]],
       [this.matrix[1][0], this.matrix[1][1], this.matrix[1][2]],
@@ -92,22 +105,25 @@ class TicTacToe {
       [this.matrix[0][0], this.matrix[1][1], this.matrix[2][2]],
       [this.matrix[0][2], this.matrix[1][1], this.matrix[2][0]],
     ]
-    for (let i = 0; i < this.matrix.length; i++) {
-      for (let y = 0; y < this.matrix[i].length; y++) {
-        if (!this.matrix[i][y]) {
-          return false
-        }
-      }
-    }
     for (let i = 0; i < win.length; i++) {
       if (win[i][0] === 'x' && win[i][1] === 'x' && win[i][2] === 'x') {
-        return false
+        return 'x'
       }
       if (win[i][0] === 'o' && win[i][1] === 'o' && win[i][2] === 'o') {
-        return false
+        return 'o'
       }
     }
-    return true
+    return null
+
+    // if (game.noMoreTurns()) {
+    //   if (game.getWinner()) {
+    //     return false
+    //   } else {
+    //     return true
+    //   }
+    // } else {
+    //   return false
+    // }
   }
 
   getFieldValue(rowIndex, colIndex) {
@@ -119,4 +135,33 @@ class TicTacToe {
   }
 }
 
-module.exports = TicTacToe
+let game = new TicTacToe()
+game.nextTurn(1, 0)
+game.isDraw()
+// game.nextTurn(0, 1)
+// game.nextTurn(0, 2)
+// game.nextTurn(1, 1)
+// game.nextTurn(2, 2)
+// game.nextTurn(2, 1)
+// game.nextTurn(0, 2)
+// game.nextTurn(0, 2)
+// game.nextTurn(0, 2)
+// game.isFinished() //?
+// game.getWinner() //?
+// game.noMoreTurns() //?
+// game.isDraw() //?
+
+// console.log(game.matrix)
+// console.log(game.plaer)
+
+// for (let i = 0; i < this.matrix.length; i++) {
+//   for (let y = 0; y < this.matrix[i].length; y++) {
+//     console.log(this.matrix[i][y])
+//   }
+// }
+
+// matrix = [
+//   ['x', 'x', 'o'],
+//   ['o', 'o', 'x'],
+//   ['x', 'o', 'x'],
+// ]
