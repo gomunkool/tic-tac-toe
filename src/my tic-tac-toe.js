@@ -88,13 +88,6 @@ class TicTacToe {
   }
 
   isDraw() {
-    for (let i = 0; i < this.matrix.length; i++) {
-      for (let y = 0; y < this.matrix[i].length; y++) {
-        if (!this.matrix[i][y]) {
-          return false
-        }
-      }
-    }
     let win = [
       [this.matrix[0][0], this.matrix[0][1], this.matrix[0][2]],
       [this.matrix[1][0], this.matrix[1][1], this.matrix[1][2]],
@@ -105,15 +98,22 @@ class TicTacToe {
       [this.matrix[0][0], this.matrix[1][1], this.matrix[2][2]],
       [this.matrix[0][2], this.matrix[1][1], this.matrix[2][0]],
     ]
-    for (let i = 0; i < win.length; i++) {
-      if (win[i][0] === 'x' && win[i][1] === 'x' && win[i][2] === 'x') {
-        return 'x'
-      }
-      if (win[i][0] === 'o' && win[i][1] === 'o' && win[i][2] === 'o') {
-        return 'o'
+    for (let i = 0; i < this.matrix.length; i++) {
+      for (let y = 0; y < this.matrix[i].length; y++) {
+        if (!this.matrix[i][y]) {
+          return false
+        }
       }
     }
-    return null
+    for (let i = 0; i < win.length; i++) {
+      if (win[i][0] === 'x' && win[i][1] === 'x' && win[i][2] === 'x') {
+        return false
+      }
+      if (win[i][0] === 'o' && win[i][1] === 'o' && win[i][2] === 'o') {
+        return false
+      }
+    }
+    return true
 
     // if (game.noMoreTurns()) {
     //   if (game.getWinner()) {
